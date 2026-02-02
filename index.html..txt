@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+    }
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 15px;
+      font-size: 1.8em;
+    }
+    p {
+      font-size: 1em;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      flex: 1 1 40%;
+      min-width: 100px;
+    }
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+    }
+    #yesBtn:hover {
+      transform: scale(1.1);
+    }
+    #noBtn {
+      background: #ccc;
+      position: relative;
+    }
+    /* Heart animation */
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 25px;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+    }
+    iframe {
+      width: 100%;
+      max-width: 350px;
+      height: 80px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <h1>Siyamthanda 💕</h1>
+    <p>Will you be my Valentine?</p>
+    <div class="buttons">
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 🙃</button>
+    </div>
+    <div id="music" style="margin-top:20px;"></div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const card = document.getElementById("card");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 150 - 75;
+      const y = Math.random() * 150 - 75;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      // Heart animation
+      const heart = document.createElement("div");
+      heart.innerText = "❤️";
+      heart.className = "heart";
+      heart.style.left = "50%";
+      heart.style.top = "50%";
+      heart.style.transform = "translate(-50%, -50%)";
+      card.appendChild(heart);
+      setTimeout(() => card.removeChild(heart), 2000);
+
+      // Change content
+      card.innerHTML = `
+        <h1>Yay, Siyamthanda!! 🥰💘</h1>
+        <p style="font-size:18px;">
+          I’m so happy you said yes ❤️<br><br>
+          <strong>mnchwaa 😘</strong>
+        </p>
+        <div id="music" style="margin-top:20px;">
+          <iframe src="https://open.spotify.com/embed/track/00gec53aXVCqYMWbKFJHGg?utm_source=generator" 
+                  frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
